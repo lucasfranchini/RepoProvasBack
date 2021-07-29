@@ -1,13 +1,13 @@
-import pg from "pg";
+import { getConnectionManager } from "typeorm";
 
-const { Pool } = pg;
-
-const connection = new Pool({
-    host: process.env.DB_HOST,
-	user: process.env.DB_USER,
-	password: process.env.DB_PASSWORD,
-	port: Number(process.env.DB_PORT),
-    database: process.env.DB_DATABASE
-});
-
-export default connection;
+export default async function connect () {
+  const connectionManager = await getConnectionManager();
+  const connection = connectionManager.create({
+    name: "default",
+    type: "postgres",
+    url: `postgres://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`,
+    entities: ["src/entities/*.ts"]
+  });
+  await connection.connect();
+  return connection;
+}

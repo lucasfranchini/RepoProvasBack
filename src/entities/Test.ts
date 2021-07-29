@@ -11,12 +11,6 @@ export default class Test {
     name:string;
     @Column()
     link:string;
-    @Column()
-    categoryId:number;
-    @Column()
-    subjectId:number;
-    @Column()
-    professorId:number;
 
     @ManyToOne(() => Subject, subject => subject.tests)
     subject:Subject;

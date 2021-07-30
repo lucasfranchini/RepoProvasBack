@@ -16,6 +16,7 @@ app.get("/category", categoryController.getCategories);
 
 
 app.get("/subjects", subjectsController.getSubjects);
+app.get("/subjects/:id/professors", subjectsController.getSubjectProfessors);
 
 export default app;
 

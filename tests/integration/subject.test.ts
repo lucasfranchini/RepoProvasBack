@@ -12,6 +12,7 @@ beforeEach(cleanDatabase)
 
 describe("GET /subjects", () => {
   it("should answer status 200 from valid url", async () => {
+    const length = await populateSubjects();
     const result = await supertest(app).get("/subjects");
     expect(result.status).toEqual(200);
   });
@@ -19,5 +20,9 @@ describe("GET /subjects", () => {
     const length = await populateSubjects();
     const result = await supertest(app).get("/subjects");
     expect(result.body.length).toEqual(length);
+  });
+  it("should answer status 404 from empty subjects table", async () => {
+    const result = await supertest(app).get("/subjects");
+    expect(result.status).toEqual(404);
   });
 });

@@ -13,8 +13,6 @@ export async function populateSubjects():Promise<number>{
             semesterId: Math.floor(Math.random()*lastSemester)+1
         })
     }
-    console.log(subjects)
-    console.log(lastSemester)
     await getRepository(Subject).insert(subjects)
     return subjectsQuantity;
 }

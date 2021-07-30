@@ -16,7 +16,7 @@ export default class Subject {
     @ManyToOne(() => Semester, semester => semester.subjects)
     semester:Semester;
 
-    @ManyToMany(()=>Professor)
+    @ManyToMany(()=>Professor , professor => professor.subjects)
     @JoinTable()
     professors:Professor[];
     

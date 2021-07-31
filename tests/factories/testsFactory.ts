@@ -32,6 +32,10 @@ export async function prepareDatabaseTests(qty:number,valid:boolean):Promise<Tes
     const body:Test[] = [];
     for(let i=0;i<qty;i++){
         body.push(await createTest(valid,subjectLength,professorsLength,categoriesLength))
-    } 
+    }
     return body;
+}
+
+export async function populateTests(tests:Test[]){
+    await getRepository(Test).insert(tests)
 }

@@ -22,7 +22,7 @@ export async function getTestsFromSubjectOrderedByCategory(req:Request,res:Respo
         const subjectId = Number(req.params.subjectId)
         if(idSchema.validate(subjectId).error) return res.sendStatus(400);
         const categories = await testService.getTestsFromSubjectOrderedByCategory(subjectId);
-        if(!categories) return res.sendStatus(404)
+        if(!categories || categories.length===0) return res.sendStatus(404)
         res.send(categories)
     }
     catch(e){

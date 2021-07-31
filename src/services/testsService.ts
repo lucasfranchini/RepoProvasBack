@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { Subject } from "typeorm/persistence/Subject";
+import Subject from "../entities/Subject";
 import Category from "../entities/Category";
 import Test from "../entities/Test";
 import { getOneCategory } from "./categoryService";

@@ -5,9 +5,10 @@ import * as testService from "../services/testsService";
 
 export async function saveNewTest(req:Request,res:Response){
     try{
+        console.log(testSchema.validate(req.body))
         if(testSchema.validate(req.body).error) return res.sendStatus(400)
         const result = await testService.saveNewTest(req.body)
-        if(!result) return res.sendStatus(400)
+        if(!result) return res.sendStatus(404)
         res.sendStatus(201)
     }
     catch(e){

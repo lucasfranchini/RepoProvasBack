@@ -2,7 +2,6 @@ import { getRepository } from "typeorm";
 import Subject from "../entities/Subject";
 
 export async function getSubjects():Promise<Subject[]>{
-
     const subjects = await getRepository(Subject).find();
     return subjects;
 }
@@ -17,4 +16,9 @@ export async function verifySubjectProfessorRelation(subjectId:number,professorI
     const verify = result.professors.find(p=>p.id===professorId);
     if(!verify) return false;
     return true;
+}
+
+export async function getOneSubject(id:number):Promise<Subject>{
+    const subject = await getRepository(Subject).findOne(id);
+    return subject;
 }

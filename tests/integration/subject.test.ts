@@ -41,7 +41,6 @@ describe("GET /subjects/:id/professors", () => {
         await populateProfessors();
         await createSubjectProfessorRelation(1,1)
         const result = await supertest(app).get(`/subjects/1/professors`);
-        console.log()
         expect(result.body.professors.length).toEqual(1);
       });
       it("should answer an object from valid id", async () => {

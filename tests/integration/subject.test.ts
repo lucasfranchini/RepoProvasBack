@@ -2,11 +2,8 @@ import "../../src/setup";
 import supertest from "supertest";
 import app from "../../src/app";
 import { cleanDatabase, endConnection, startConnection } from "../utils/database";
-import { populateCategories } from "../factories/categoryFactory";
-import { populateSemesters } from "../factories/semesterFactory";
 import { createSubjectProfessorRelation, populateSubjects } from "../factories/subjectFactory";
 import { populateProfessors } from "../factories/professorFactory";
-import Subject from "../../src/entities/Subject";
 
 beforeAll(startConnection);
 afterAll(endConnection);

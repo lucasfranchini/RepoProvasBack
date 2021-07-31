@@ -6,6 +6,7 @@ import connectDatabase from "./database";
 
 import * as categoryController from "./controllers/categoryController";
 import * as subjectsController from "./controllers/subjectsController";
+import * as testsController from "./controllers/testsController";
 
 
 const app = express();
@@ -17,6 +18,8 @@ app.get("/category", categoryController.getCategories);
 
 app.get("/subjects", subjectsController.getSubjects);
 app.get("/subjects/:id/professors", subjectsController.getSubjectProfessors);
+
+app.post("/tests",testsController.saveNewTest)
 
 export default app;
 

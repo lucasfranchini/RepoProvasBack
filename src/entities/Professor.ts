@@ -13,5 +13,5 @@ export default class Professor {
     tests: Test[];
 
     @ManyToMany(()=>Subject, subject=>subject.professors)
-    subjects:Subject[]
+    subjects:Subject[];
 }

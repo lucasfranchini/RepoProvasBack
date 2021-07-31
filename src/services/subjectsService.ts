@@ -1,4 +1,6 @@
 import { getRepository } from "typeorm";
+import Professor from "../entities/Professor";
+import Semester from "../entities/Semester";
 import Subject from "../entities/Subject";
 
 export async function getSubjects():Promise<Subject[]>{
@@ -21,4 +23,12 @@ export async function verifySubjectProfessorRelation(subjectId:number,professorI
 export async function getOneSubject(id:number):Promise<Subject>{
     const subject = await getRepository(Subject).findOne(id);
     return subject;
+}
+
+export async function postSubjectProfessors(id:number,professor:Professor):Promise<boolean>{
+    const subject = await getRepository(Subject).findOne({where:{id},relations:['professors']});
+    if(!subject) return false;
+    subject.professors = [...subject.professors,professor];
+    await getRepository(Subject).save(subject)
+    return true
 }

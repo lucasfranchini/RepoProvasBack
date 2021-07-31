@@ -42,7 +42,6 @@ describe('POST /tests',()=>{
         const result = await supertest(app).post('/tests').send(body)
         expect(result.status).toEqual(404)
     })
-
     it('returns status 201 for valid params', async ()=>{
         const categoriesLength = await populateCategories();
         const subjectLength = await populateSubjects();

@@ -12,17 +12,3 @@ export async function getOneCategory(id:number):Promise<Category>{
     return category;
 }
 
-export async function getTestsFromSubjectOrderedByCategory(subjectId:number):Promise<Category[]>{
-    const verifyId = await getRepository(Subject).findOne(subjectId)
-    if(!verifyId) return null
-    
-    const categories = await getRepository(Category)
-    .createQueryBuilder('category')
-    .leftJoinAndSelect('category.tests','test')
-    .leftJoin('test.subject','subject')
-    .leftJoinAndSelect('test.professor','professor')
-    .where('subject.id = :id',{id:subjectId})
-    .getMany()
-
-    return categories;
-}

@@ -22,7 +22,7 @@ app.get("/subjects/:id/professors", subjectsController.getSubjectProfessors);
 app.post("/subjects/:id/professors", subjectsController.postSubjectProfessors);
 
 app.post("/tests",testsController.saveNewTest);
-app.get('/categories/tests/subjects/:subjectId',categoryController.getTestsFromSubjectOrderedByCategory)
+app.get('/categories/tests/subjects/:subjectId',testsController.getTestsFromSubjectOrderedByCategory)
 
 app.get('/semesters/complete',semestersController.getSemestersComplete)
 

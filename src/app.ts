@@ -22,7 +22,8 @@ app.get("/subjects/:id/professors", subjectsController.getSubjectProfessors);
 app.post("/subjects/:id/professors", subjectsController.postSubjectProfessors);
 
 app.post("/tests",testsController.saveNewTest);
-app.get('/categories/tests/subjects/:subjectId',testsController.getTestsFromSubjectOrderedByCategory)
+//app.get('/categories/tests/subjects/:subjectId',testsController.getTeststOrderedByCategory);
+app.get('/categories/tests/:type/:id',testsController.getTestsOrderedByCategory);
 
 app.get('/semesters/complete',semestersController.getSemestersComplete)
 

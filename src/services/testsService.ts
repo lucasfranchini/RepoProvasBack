@@ -15,18 +15,18 @@ export async function saveNewTest(newTest:Test):Promise<boolean>{
     return true
 }
 
-export async function getTestsFromSubjectOrderedByCategory(subjectId:number):Promise<Category[]>{
-    const verifyId = await getRepository(Subject).findOne(subjectId)
+
+
+export async function getTestsOrderedByCategory(id:number,mainType:string,secondType:string):Promise<Category[]>{
+    const verifyId = await getRepository(Subject).findOne(id)
     if(!verifyId) return null
-    
     const categories = await getRepository(Category)
     .createQueryBuilder('category')
     .leftJoinAndSelect('category.tests','test')
-    .leftJoin('test.subject','subject')
-    .leftJoinAndSelect('test.professor','professor')
-    .where('subject.id = :id',{id:subjectId})
+    .leftJoin(`test.${mainType}`,`${mainType}`)
+    .leftJoinAndSelect(`test.${secondType}`,`${secondType}`)
+    .where(`${mainType}.id = :id`,{id})
     .getMany()
-
     return categories;
 }
 

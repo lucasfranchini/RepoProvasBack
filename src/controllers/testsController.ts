@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import Joi from "joi";
 import idSchema from "../Schemas/idSchema";
 import testSchema from "../Schemas/testSchema";
 
@@ -17,11 +18,14 @@ export async function saveNewTest(req:Request,res:Response){
     }
 }
 
-export async function getTestsFromSubjectOrderedByCategory(req:Request,res:Response){
+export async function getTestsOrderedByCategory(req:Request,res:Response){
     try{
-        const subjectId = Number(req.params.subjectId)
-        if(idSchema.validate(subjectId).error) return res.sendStatus(400);
-        const categories = await testService.getTestsFromSubjectOrderedByCategory(subjectId);
+        const id = Number(req.params.id)
+        const type:string = req.params.type
+        const typeschema = Joi.string().valid('professor','subject');
+        if(idSchema.validate(id).error || typeschema.validate(type).error) return res.sendStatus(400);
+        const secondType = type === 'subject' ? 'professor':'subject'
+        const categories = await testService.getTestsOrderedByCategory(id,type,secondType);
         if(!categories || categories.length===0) return res.sendStatus(404)
         res.send(categories)
     }

@@ -41,33 +41,37 @@ describe('POST /tests',()=>{
     })
 })
 
-describe('GET /categories/tests/subjects/:subjectId',()=>{
+describe('GET /categories/tests/:type/:subjectId',()=>{
     it('returns status 400 for invalid id', async ()=>{
-        const result = await supertest(app).get('/categories/tests/subjects/-1')
+        const result = await supertest(app).get('/categories/tests/subject/-1')
+        expect(result.status).toEqual(400);
+    })
+    it('returns status 400 for invalid type', async ()=>{
+        const result = await supertest(app).get('/categories/tests/subjects/1')
         expect(result.status).toEqual(400);
     })
     it('returns status 404 for id inexistent', async ()=>{
         const body = await prepareDatabaseTests(1,true);
         await populateTests(body);
-        const result = await supertest(app).get('/categories/tests/subjects/100')
+        const result = await supertest(app).get('/categories/tests/subject/100')
         expect(result.status).toEqual(404);
     })
     it('returns status 200 for valid url', async ()=>{
         const body = await prepareDatabaseTests(1,true);
 
         await populateTests(body);
-        const result = await supertest(app).get(`/categories/tests/subjects/${body[0].subject.id}`)
+        const result = await supertest(app).get(`/categories/tests/subject/${body[0].subject.id}`)
         expect(result.status).toEqual(200);
     })
     it('returns an array for valid url', async ()=>{
         const body = await prepareDatabaseTests(1,true);
         await populateTests(body);
-        const result = await supertest(app).get(`/categories/tests/subjects/${body[0].subject.id}`);
+        const result = await supertest(app).get(`/categories/tests/subject/${body[0].subject.id}`);
         expect(result.body.length).toEqual(1);
     })
     it('returns status 404 for empty tests', async ()=>{
         const body = await prepareDatabaseTests(1,true);
-        const result = await supertest(app).get(`/categories/tests/subjects/1`);
+        const result = await supertest(app).get(`/categories/tests/subject/1`);
         expect(result.status).toEqual(404);
     })
 })

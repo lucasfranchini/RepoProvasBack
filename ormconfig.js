@@ -6,6 +6,9 @@ module.exports = {
   migrationsTableName: "migrations",
   entities: ["dist/src/entities/*.js"],
   migrations: ["dist/src/migrations/*.js"],
+  ssl: {
+    rejectUnauthorized: false,
+  },
   cli: {
     migrationsDir: "src/migrations",
     entitiesDir: "dist/entities/*.js"

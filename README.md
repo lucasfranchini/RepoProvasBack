@@ -8,8 +8,6 @@ Try it out now at https://repo-provas-front-n128ghmoy-lucasfranchini.vercel.app
 
 This is an application with which lots of people can share old tests made in college. Below are the implemented features:
 
-- Sign Up
-- Login
 - Save in Database all tests
 - Link a test to a subject
 - Link a test to a professor

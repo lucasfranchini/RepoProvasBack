@@ -1,6 +1,6 @@
-# My Wallet
+# RepoProvas
 
-An easy to use financial manager. Track your revenues and expenses to learn how you spend your money and know all the time how much you have.
+An Web application to post and see all the old tests for a determined college.
 
 Try it out now at https://repo-provas-front-n128ghmoy-lucasfranchini.vercel.app
 
